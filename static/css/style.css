@@ -1,0 +1,493 @@
+:root {
+    --bg-dark: #0b0f19;
+    --card-bg: #111827;
+    --card-border: #1f293d;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --danger-red: #ef4444;
+    --warning-orange: #f97316;
+    --warning-yellow: #eab308;
+    --success-green: #10b981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(31, 41, 61, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 41, 61, 0.25) 1px, transparent 1px);
+    background-size: 32px 32px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #60a5fa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.badge-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-green);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success-green);
+}
+
+.container {
+    max-width: 960px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    flex: 1;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.scanner-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-box {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.search-box input {
+    flex: 1;
+    background: #0d131f;
+    border: 1px solid #2d3748;
+    color: #fff;
+    padding: 0.9rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'JetBrains Mono', monospace;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.search-box button {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 0 1.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.search-box button:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    transform: translateY(-1px);
+}
+
+.samples-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.samples-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sample-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sample-chip {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.sample-chip:hover {
+    background: #334155;
+    color: white;
+}
+
+/* Loading */
+.loading-box {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.pulse-loader {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(59, 130, 246, 0.2);
+    border-top: 4px solid var(--accent-blue);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Verdict Card */
+.verdict-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.verdict-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+}
+
+.verdict-pill.danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-red);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.verdict-pill.warning {
+    background: rgba(249, 115, 22, 0.15);
+    color: var(--warning-orange);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.verdict-pill.safe {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.verdict-heading {
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+}
+
+.url-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+}
+
+/* Qualitative Risk Degree Badge Box */
+.degree-badge-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    background: #0d131f;
+    border: 2px solid var(--card-border);
+    min-width: 170px;
+    text-align: center;
+}
+
+.degree-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+}
+
+.degree-badge {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.degree-badge.critical, .degree-badge.high {
+    color: var(--danger-red);
+}
+
+.degree-badge.moderate {
+    color: var(--warning-orange);
+}
+
+.degree-badge.low {
+    color: var(--warning-yellow);
+}
+
+.degree-badge.safe {
+    color: var(--success-green);
+}
+
+/* Qualitative Risk Ladder */
+.risk-ladder-wrapper {
+    background: #0d131f;
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ladder-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.risk-ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+
+.ladder-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.25rem;
+    border-radius: 8px;
+    background: #172033;
+    border: 1px solid #23314d;
+    opacity: 0.35;
+    transition: all 0.3s ease;
+}
+
+.ladder-step.active {
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+.ladder-step#step-Safe.active {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: var(--success-green);
+    color: var(--success-green);
+}
+
+.ladder-step#step-Low.active {
+    background: rgba(234, 179, 8, 0.2);
+    border-color: var(--warning-yellow);
+    color: var(--warning-yellow);
+}
+
+.ladder-step#step-Moderate.active {
+    background: rgba(249, 115, 22, 0.2);
+    border-color: var(--warning-orange);
+    color: var(--warning-orange);
+}
+
+.ladder-step#step-High.active {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--danger-red);
+    color: var(--danger-red);
+}
+
+.ladder-step#step-Critical.active {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: #dc2626;
+    color: #fca5a5;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+.ladder-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4b5563;
+}
+
+.ladder-step.active .ladder-dot {
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.ladder-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Detail Cards */
+.detail-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: #e2e8f0;
+}
+
+.factors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.85rem;
+}
+
+.factor-item {
+    background: #0d131f;
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent-blue);
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+}
+
+.factor-item.danger {
+    border-left-color: var(--danger-red);
+}
+
+.factor-item.warning {
+    border-left-color: var(--warning-orange);
+}
+
+.factor-item.safe {
+    border-left-color: var(--success-green);
+}
+
+.factor-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.factor-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.features-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.features-table th, .features-table td {
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.features-table th {
+    background: #0d131f;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.features-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    color: #93c5fd;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--card-border);
+}
+
+.hidden {
+    display: none !important;
+}

@@ -1,41 +1,69 @@
-# URL Based Phishing Detection Using Machine Learning
-URL Based Phishing Detection using machine Learning with Code, Documents And Video Tutrial
+# URL-Based Phishing Detection Using Machine Learning
 
-![Phishing URL](https://github.com/user-attachments/assets/e5ddcf39-2d33-431f-ad53-95573810769f)
+An intelligent cybersecurity system that extracts lexical, structural, and security features from URLs to assess phishing risk degrees (**Safe**, **Low**, **Moderate**, **High**, **Critical**) using a trained Machine Learning model.
 
-## Youtube link: https://youtu.be/nDxP_lJmVk4?si=lZj3YD0D7v47OZC8
+---
 
-## Abstract:
-Phishing attacks are a significant threat to online security, targeting individuals and organizations by tricking them into revealing sensitive information. This study proposes an intelligent URL phishing detection system that uses machine learning algorithms to identify and classify phishing URLs. The system extracts features from URLs and uses a supervised learning approach to train a model to detect phishing URLs. Experimental results demonstrate the effectiveness of the proposed system in detecting phishing URLs with high accuracy. This system has the potential to provide real-time protection against phishing attacks and enhance online security.
+## 🚀 Features
 
-Keywords: URL Phishing Detection, Machine Learning, Supervised Learning, Online Security, Cybersecurity, Phishing Attack Detection.
+- **Qualitative Threat Assessment**:
+  - Replaces raw probability figures with actionable security degrees:
+    - 🟢 **Safe / Minimal Risk**: Verified domain hierarchy, safe protocols, no suspicious patterns.
+    - 🟡 **Low Risk**: Minor lexical anomalies with no threat indicators.
+    - 🟠 **Moderate Risk**: Multiple risk indicators detected (e.g. nested subdomains, credential keywords).
+    - 🔴 **High Risk**: Aggressive phishing patterns identified.
+    - 🛑 **Critical Risk**: Confirmed brand spoofing or unauthorized IP targeting.
 
-### Project include: 
+- **18+ Advanced Extracted URL Features**:
+  - Brand Impersonation / Spoofing Check (e.g., `paypal-login.xyz` vs official `paypal.com`)
+  - High-Risk Top-Level Domains (`.tk`, `.xyz`, `.top`, `.pw`, etc.)
+  - URL Shortener Masking (`bit.ly`, `tinyurl.com`, etc.)
+  - Subdomain Depth & Hyphen Patterning
+  - Shannon String Entropy & Randomness
+  - Contextual Keyword Analysis (Domain vs Path)
 
-1. Synopsis
+- **Trained on Benchmark Multi-Source Dataset (5,370+ URLs)**:
+  - PhishTank & UNB academic benchmark
+  - OpenPhish live verified attack feeds
+  - Major verified root authorities
 
-2. PPT
+---
 
-3. Research Paper
+## 📁 Project Structure
 
-4. Code
+```text
+url-based-phishing-detection-using-machine-learning/
+├── dataset/
+│   └── phishing_urls.csv     # Benchmark multi-source dataset
+├── static/
+│   ├── css/style.css         # Dark-mode cybersecurity UI
+│   └── js/main.js            # Dynamic risk ladder visualization
+├── templates/
+│   └── index.html            # Web dashboard interface
+├── feature_extraction.py     # 18+ URL feature extractor
+├── generate_dataset.py       # Dataset generator (OpenPhish + UNB)
+├── train.py                  # Model training and evaluation script
+├── predict.py                # Command-line testing utility
+├── app.py                    # Flask web server & REST API
+├── run.bat                   # 1-click Windows desktop launcher
+├── requirements.txt          # Python dependencies
+└── model.pkl                 # Trained Random Forest classifier
+```
 
-5. Explanation video
+---
 
-6. Documents
+## ⚡ How to Run
 
-7. Report
+### 1. Launch via Web Dashboard (Recommended)
+Simply double-click **`run.bat`** or run:
+```bash
+python app.py
+```
+Open your browser at:
+👉 **`http://127.0.0.1:5000`**
 
-### Need Code, Documents & Explanation video ? 
-
-## How to Reach me :
-
-### Mail : vatshayan007@gmail.com 
-
-### WhatsApp: +91 9310631437 (Helping 24*7) **[CHAT](https://wa.me/message/CHWN2AHCPMAZK1)** 
-
-### Website : https://www.finalproject.in/
-
-### 💻 Youtube Channel: [Link](https://www.youtube.com/@computerscienceproject)
-
-Mail/Message me for Projects Help 🙏🏻
+### 2. Test via Command Line (CLI)
+```bash
+python predict.py "https://www.google.com"
+python predict.py "https://appleid.apple.com.verify-billing.tk/login"
+```

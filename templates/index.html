@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield | URL-Based Phishing Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="background-grid"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">🛡️</span>
+            <div>
+                <h1>PhishShield ML</h1>
+                <p class="tagline">URL Phishing & Threat Assessment System</p>
+            </div>
+        </div>
+        <div class="badge-status">
+            <span class="status-dot"></span>
+            <span>AI Risk Engine Active</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Input Section -->
+        <section class="card scanner-card">
+            <h2>Scan a URL for Phishing Threats</h2>
+            <p class="subtitle">Evaluates lexical structure, brand impersonation, and domain architecture to assess risk degree.</p>
+
+            <form id="scanForm" class="search-box">
+                <input 
+                    type="text" 
+                    id="urlInput" 
+                    name="url" 
+                    placeholder="Enter URL to assess (e.g. https://example.com or http://192.168.1.1/login.php)..." 
+                    required 
+                    autocomplete="off"
+                />
+                <button type="submit" id="scanBtn">
+                    <span id="btnText">Assess Risk</span>
+                </button>
+            </form>
+
+            <!-- Sample Quick Test Chips -->
+            <div class="samples-wrapper">
+                <span class="samples-label">Quick Test Presets:</span>
+                <div class="sample-chips">
+                    {% for sample in samples %}
+                    <button type="button" class="sample-chip" data-url="{{ sample.url }}">
+                        {{ sample.label }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loadingSection" class="loading-box hidden">
+            <div class="pulse-loader"></div>
+            <p>Deconstructing URL and calculating threat degree...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-container hidden">
+            <!-- Verdict Hero -->
+            <div id="verdictCard" class="card verdict-card">
+                <div class="verdict-header">
+                    <div>
+                        <span id="verdictBadge" class="verdict-pill">UNKNOWN</span>
+                        <h3 id="verdictTitle" class="verdict-heading">Analysis Result</h3>
+                        <p id="targetUrlDisplay" class="url-text"></p>
+                    </div>
+                    <div class="degree-badge-box" id="degreeBadgeBox">
+                        <span class="degree-title">Risk Degree</span>
+                        <span id="riskDegreeBadge" class="degree-badge">MODERATE</span>
+                    </div>
+                </div>
+
+                <!-- Qualitative Risk Ladder -->
+                <div class="risk-ladder-wrapper">
+                    <span class="ladder-label">Threat Degree Assessment:</span>
+                    <div class="risk-ladder">
+                        <div class="ladder-step" id="step-Safe">
+                            <span class="ladder-dot"></span>
+                            <span class="ladder-name">Safe</span>
+                        </div>
+                        <div class="ladder-step" id="step-Low">
+                            <span class="ladder-dot"></span>
+                            <span class="ladder-name">Low</span>
+                        </div>
+                        <div class="ladder-step" id="step-Moderate">
+                            <span class="ladder-dot"></span>
+                            <span class="ladder-name">Moderate</span>
+                        </div>
+                        <div class="ladder-step" id="step-High">
+                            <span class="ladder-dot"></span>
+                            <span class="ladder-name">High</span>
+                        </div>
+                        <div class="ladder-step" id="step-Critical">
+                            <span class="ladder-dot"></span>
+                            <span class="ladder-name">Critical</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Factors Breakdown -->
+            <div class="card detail-card">
+                <h3>Flagged Risk Indicators</h3>
+                <div id="riskFactorsList" class="factors-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Detailed Features Table -->
+            <div class="card detail-card">
+                <h3>Extracted Structural Characteristics</h3>
+                <div class="table-responsive">
+                    <table class="features-table">
+                        <thead>
+                            <tr>
+                                <th>Characteristic</th>
+                                <th>Value</th>
+                                <th>Security Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody id="featuresTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>URL-Based Phishing Detection using Machine Learning &bull; Cybersecurity Assessment System</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
